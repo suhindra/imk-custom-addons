@@ -26,7 +26,11 @@
                                 <field name="kw2" style="width:192px;"  placeholder="KW 2" />
                                 <field name="kw3" style="width:192px;"  placeholder="KW 3" />
                                 <field name="kw4" style="width:192px;"  placeholder="KW 4" />
-                                <field name="kw5" style="width:192px;"  placeholder="KW 5" />
+                            </div>
+                            <label for="kw5"/>
+                            <div class="o_row" name="kw5">
+                                <field name="kw5"/>
+                                <span>kg</span>
                             </div>
                         </group>
                 </xpath>
