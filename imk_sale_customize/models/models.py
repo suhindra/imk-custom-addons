@@ -17,4 +17,4 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_id')
     def product_id_change(self):
         if self.product_id.product_template_attribute_value_ids:
-            self.product_template_attribute_value_ids = [(6, 0, self.product_id.product_template_attribute_value_ids.ids)]
+            self.product_template_attribute_value_ids = [(6, 0, self.product_id.product_template_attribute_value_ids.name)]
