@@ -19,15 +19,36 @@
                                 <field name="breadth" style="width:65px;" placeholder="Breadth"/>
                                 <field name="height" style="width:60px;" placeholder="Height"/>
                                 <field name="volume" style="width:192px;"  string="Volume" />
-                                <field name="wide" style="width:192px;"  string="Wide" />
-                                <field name="kw1" style="width:192px;"  string="KW 1" />
-                                <field name="kw2" style="width:192px;"  string="KW 2" />
-                                <field name="kw3" style="width:192px;"  string="KW 3" />
-                                <field name="kw4" style="width:192px;"  string="KW 4" />
-                                <field name="kw5" style="width:192px;"  string="KW 5" />
-
                                 <span>mm³</span>
                             </div>
+
+                            <label for="wide"/>
+                            <div class="o_row" name="wide">
+                                <field name="wide"/>
+                                <span>m</span>
+                            </div>
+
+                            <label for="kw1"/>
+                            <div class="o_row" name="kw1">
+                                <field name="kw1"/>
+                            </div>
+                            <label for="kw2"/>
+                            <div class="o_row" name="kw2">
+                                <field name="kw2"/>
+                            </div>
+                            <label for="kw3"/>
+                            <div class="o_row" name="kw3">
+                                <field name="kw3"/>
+                            </div>
+                            <label for="kw4"/>
+                            <div class="o_row" name="kw4">
+                                <field name="kw4"/>
+                            </div>
+                            <label for="kw5"/>
+                            <div class="o_row" name="kw5">
+                                <field name="kw5"/>
+                            </div>
+
                         </group>
                 </xpath>
             </field>
