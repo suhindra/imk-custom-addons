@@ -27,29 +27,29 @@
                                 <field name="wide"/>
                                 <span>m</span>
                             </div>
-                            <xpath expr="//field[@name='responsible_id']" position="before"> 
-                                <label for="kw1"/>
-                                <div class="o_row" name="kw1">
-                                    <field name="kw1"/>
-                                </div>
-                                <label for="kw2"/>
-                                <div class="o_row" name="kw2">
-                                    <field name="kw2"/>
-                                </div>
-                                <label for="kw3"/>
-                                <div class="o_row" name="kw3">
-                                    <field name="kw3"/>
-                                </div>
-                                <label for="kw4"/>
-                                <div class="o_row" name="kw4">
-                                    <field name="kw4"/>
-                                </div>
-                                <label for="kw5"/>
-                                <div class="o_row" name="kw5">
-                                    <field name="kw5"/>
-                                </div>
-                            </xpath> 
                         </group>
+                </xpath>
+                <xpath expr="//field[@name='responsible_id']" position="before"> 
+                    <label for="kw1"/>
+                    <div class="o_row" name="kw1">
+                        <field name="kw1"/>
+                    </div>
+                    <label for="kw2"/>
+                    <div class="o_row" name="kw2">
+                        <field name="kw2"/>
+                    </div>
+                    <label for="kw3"/>
+                    <div class="o_row" name="kw3">
+                        <field name="kw3"/>
+                    </div>
+                    <label for="kw4"/>
+                    <div class="o_row" name="kw4">
+                        <field name="kw4"/>
+                    </div>
+                    <label for="kw5"/>
+                    <div class="o_row" name="kw5">
+                        <field name="kw5"/>
+                    </div>
                 </xpath>
             </field>
        </record>
