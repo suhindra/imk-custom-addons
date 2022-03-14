@@ -19,11 +19,19 @@
                                 <field name="breadth" style="width:65px;" placeholder="Breadth"/>
                                 <field name="height" style="width:60px;" placeholder="Height"/>
                                 <field name="volume" style="width:192px;"  string="Volume" />
-                                <span>m³</span>
+                                <field name="wide" style="width:192px;"  string="Wide" />
+                                <field name="kw1" style="width:192px;"  string="KW 1" />
+                                <field name="kw2" style="width:192px;"  string="KW 2" />
+                                <field name="kw3" style="width:192px;"  string="KW 3" />
+                                <field name="kw4" style="width:192px;"  string="KW 4" />
+                                <field name="kw5" style="width:192px;"  string="KW 5" />
+
+                                <span>mm³</span>
                             </div>
                         </group>
                 </xpath>
             </field>
        </record>
+
     </data>
 </odoo>
