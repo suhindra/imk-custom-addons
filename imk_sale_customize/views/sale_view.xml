@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="discount_sale_view_form" model="ir.ui.view">
+            <field name="name">imk.sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                    <field name="product_template_attribute_value_ids"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

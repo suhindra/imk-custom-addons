@@ -1,17 +1,21 @@
-# -*- coding: utf-8 -*-
+from openerp import api, fields, models
+import openerp.addons.decimal_precision as dp
+import logging
+_logger = logging.getLogger(__name__)
 
-from odoo import models, fields, api
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    customer_po = fields.Char(string='Customer PO')
 
 
-class Module(models.Model):
-    _inherit = 'ir.module.module'
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
 
-    @api.multi
-    def module_multi_uninstall(self):
-        """ Perform the various steps required to uninstall a module completely
-            including the deletion of all database structures created by the module:
-            tables, columns, constraints, etc.
-        """
-        modules = self.browse(self.env.context.get('active_ids'))
-        [module.button_immediate_uninstall() for module in modules if module not in ['base', 'web']]
+    product_template_attribute_value_ids = fields.Many2many('product.template.attribute.value', relation='product_variant_combination', string="Attribute Values", ondelete='restrict')
 
+    @api.onchange('product_id')
+    def product_id_change(self):
+        super(class_name, self).product_id_change()
+        if self.product_id.product_template_attribute_value_ids:
+            self.product_template_attribute_value_ids = [(6, 0, self.product_id.product_template_attribute_value_ids.ids)]
