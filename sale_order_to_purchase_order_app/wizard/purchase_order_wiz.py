@@ -32,9 +32,9 @@ class purchase_order_wizard(models.TransientModel):
 				'product': rec.product_id.id,
 				'description': rec.name,
 				'product_uom_qty': rec.product_uom_qty,
-				'price_unit': rec.price_unit,
+				# 'price_unit': rec.price_unit,
 				'product_uom': rec.product_uom.id,
-				'price_subtotal': rec.price_subtotal,
+				# 'price_subtotal': rec.price_subtotal,
 				}))
 		res = super(purchase_order_wizard, self).default_get(vals)
 		res.update({'purchase_order_ids': terns})
@@ -60,7 +60,7 @@ class purchase_order_wizard(models.TransientModel):
 				'product_qty': line.product_uom_qty,
 				'date_planned': self.scheduled_date,
 				'product_uom': line.product_uom.id,
-				'price_unit': line.price_unit,
+				# 'price_unit': line.price_unit,
 				}))
 
 		po_order = po_object.create({'partner_id': self.partner_id.id,

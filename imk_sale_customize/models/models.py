@@ -6,7 +6,8 @@ _logger = logging.getLogger(__name__)
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    customer_po = fields.Char(string='Customer PO')
+    customer_po = fields.Char(required=True, string='Customer PO')
+    customer_shipment_date = fields.Date(required=True, default=fields.Date.context_today, string='Customer\' Shipment Date')
 
 
 class SaleOrderLine(models.Model):

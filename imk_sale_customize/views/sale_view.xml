@@ -12,6 +12,7 @@
 
                 <xpath expr="//field[@name='payment_term_id']" position="after"> 
                     <field name="customer_po"/>
+                    <field name="customer_shipment_date"/>
                 </xpath> 
             </field>
         </record>
