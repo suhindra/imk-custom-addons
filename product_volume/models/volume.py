@@ -24,10 +24,12 @@ class ProductDimensionsVolume(models.Model):
 
     @api.onchange('length','breadth','height') 
     def onchange_l_b_h(self):
+        _logger.info('FYI: This is happening1')
         self.volume = float(self.length if self.length else 0) * float(self.breadth if self.breadth else 0) * float(self.height if self.height else 0)
 
     @api.onchange('length','breadth')
     def onchange_l_b(self):
+        _logger.info('FYI: This is happenin2')
         self.wide = float(self.length if self.length else 0) * float(self.breadth if self.breadth else 0)
 
     @api.onchange('length','breadth','height','kw1','kw2','kw3','kw4','kw5') 
