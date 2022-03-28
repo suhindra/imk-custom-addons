@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, models, fields
+import logging
+
+_logger = logging.getLogger(__name__)
+
 
 class ProductDimensionsVolume(models.Model):
     _inherit = 'product.template'
@@ -28,6 +32,7 @@ class ProductDimensionsVolume(models.Model):
 
     @api.onchange('length','breadth','height','kw1','kw2','kw3','kw4','kw5') 
     def onchange_l_b_h_kw(self):
-        if self.attribute_line_ids:
-            pass
-        self.inner_size 
+        for val in self.attribute_line_ids:
+            _logger.info('FYI: This is happening')
+            _logger.info(val)
+            self.inner_size 
