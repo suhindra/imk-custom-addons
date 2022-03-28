@@ -37,4 +37,4 @@ class ProductDimensionsVolume(models.Model):
         for val in self.attribute_line_ids:
             _logger.info('FYI: This is happening')
             _logger.info(val)
-            self.inner_size 
+            self.inner_size  = '1'
