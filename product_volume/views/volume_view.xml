@@ -8,11 +8,6 @@
             <field name="arch" type="xml">
                 <xpath expr="//group[@name='group_lots_and_weight']" position="replace">
                     <group string="Logistics" name="group_lots_and_weight" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}">
-                            <label for="weight"/>
-                            <div class="o_row" name="weight">
-                                <field name="weight"/>
-                                <span>kg</span>
-                            </div>
                             <label for="volume"/>
                             <div name="volume">
                                 <field name="length" style="width:65px;" placeholder="Length"/>
@@ -45,6 +40,11 @@
                             <label for="kw5"/>
                             <div class="o_row" name="kw5">
                                 <field name="kw5"/>
+                            </div>
+                            <label for="weight"/>
+                            <div class="o_row" name="weight">
+                                <field name="weight"/>
+                                <span>kg</span>
                             </div>
                         </group>
                 </xpath>
