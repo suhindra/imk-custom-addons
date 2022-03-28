@@ -36,5 +36,5 @@ class ProductDimensionsVolume(models.Model):
     def onchange_l_b_h_kw(self):
         for val in self.attribute_line_ids:
             _logger.info('FYI: This is happening')
-            _logger.info(val)
+            _logger.info(val.name)
             self.inner_size  = '1'
