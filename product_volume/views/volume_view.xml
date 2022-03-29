@@ -65,9 +65,23 @@
                             <span>mm</span>
                         </div>
                         <label for="volume"/>
-                        <div name="volume">
+                        <div class="o_row" name="volume">
                             <field name="volume" />
                             <span>mm³</span>
+                        </div>
+                    </group>
+                </xpath>
+                <xpath expr="//group[@name='group_lots_and_weight']" position="before">
+                    <group string="Manufacture Process" name="group_lots_and_weight" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}">
+                        <label string='Manufacture Process'/>
+                        <div class="o_row" name="join">
+                            <field name="join"/>
+                            <field name="slitter"/>
+                            <field name="slotter"/>
+                            <field name="die_cut"/>
+                            <field name="cetak"/>
+                            <field name="glue"/>
+                            <field name="stitching"/>
                         </div>
                     </group>
                 </xpath>

@@ -14,6 +14,13 @@ class ProductDimensionsVolume(models.Model):
     join = fields.Selection(string="Join", selection=JOINS, required=True)
     flute = fields.Selection(string="Flute", selection=FLUTES, required=True)
 
+    slitter = fields.Boolean('Slitter');
+    slotter = fields.Boolean('Slotter');
+    die_cut = fields.Boolean('Die Cut');
+    cetak = fields.Boolean('Cetak');
+    glue = fields.Boolean('Glue');
+    stitching = fields.Boolean('Stitching');
+    
     length = fields.Char(string="Length")
     breadth = fields.Char(string="Breadth")
     height = fields.Char(string="Height")
