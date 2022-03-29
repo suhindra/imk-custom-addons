@@ -71,7 +71,7 @@
                         </div>
                     </group>
                 </xpath>
-                <xpath expr="//group[@name='group_lots_and_weight']" position="before">
+                <xpath expr="//group[@name='group_lots_and_weight']" position="after">
                     <group string="Manufacture Process" name="group_lots_and_weight" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}">
                         <label string='Manufacture Process'/>
                         <div class="o_row" name="join">
