@@ -13,14 +13,12 @@ class ProductDimensionsVolume(models.Model):
     FLUTES = [('bf', 'BF'), ('cf', 'CF'), ('bcf', 'BCF')]
     join = fields.Selection(string="Join", selection=JOINS, required=True)
     flute = fields.Selection(string="Flute", selection=FLUTES, required=True)
-
-    slitter = fields.Boolean('Slitter');
-    slotter = fields.Boolean('Slotter');
-    die_cut = fields.Boolean('Die Cut');
-    cetak = fields.Boolean('Cetak');
-    glue = fields.Boolean('Glue');
-    stitching = fields.Boolean('Stitching');
-    
+    slitter = fields.Boolean(string='Slitter');
+    slotter = fields.Boolean(string='Slotter');
+    die_cut = fields.Boolean(string='Die Cut');
+    cetak = fields.Boolean(string='Cetak');
+    glue = fields.Boolean(string='Glue');
+    stitching = fields.Boolean(string='Stitching');
     length = fields.Char(string="Length")
     breadth = fields.Char(string="Breadth")
     height = fields.Char(string="Height")

@@ -70,7 +70,15 @@
                             <span>mm³</span>
                         </div>
             
-         
+                        <label string='Manufacture Process'/>
+                        <div class="o_row" name="slitter">
+                            <field name="slitter"/>
+                            <field name="slotter"/>
+                            <field name="die_cut"/>
+                            <field name="cetak"/>
+                            <field name="glue"/>
+                            <field name="stitching"/>
+                        </div>
                     </group>
                 </xpath>
             </field>
