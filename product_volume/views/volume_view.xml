@@ -71,7 +71,7 @@
                         </div>
             
                         <label string='Manufacture Process'/>
-                        <div class="o_row" name="manufacture_process">
+                        <div class="o_row" name="slitter">
                             <field name="slitter"/>
                             <field name="slotter"/>
                             <field name="die_cut"/>
