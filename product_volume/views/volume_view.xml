@@ -76,10 +76,25 @@
                         <label for="slitter"/>
                         <div class="o_row" name="slitter">
                             <field name="slitter"/>
+                        </div>
+                        <label for="slotter"/>
+                        <div class="o_row" name="slotter">
                             <field name="slotter"/>
+                        </div>
+                        <label for="die_cut"/>
+                        <div class="o_row" name="die_cut">
                             <field name="die_cut"/>
+                        </div>
+                        <label for="cetak"/>
+                        <div class="o_row" name="cetak">
                             <field name="cetak"/>
+                        </div>
+                        <label for="glue"/>
+                        <div class="o_row" name="glue">
                             <field name="glue"/>
+                        </div>
+                        <label for="stitching"/>
+                        <div class="o_row" name="stitching">
                             <field name="stitching"/>
                         </div>
                     </group>
