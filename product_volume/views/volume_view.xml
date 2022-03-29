@@ -70,8 +70,6 @@
                             <span>mm³</span>
                         </div>
                     </group>
-                </xpath>
-                <xpath expr="//group[@name='group_lots_and_weight']" position="after">
                     <group string="Manufacture Process" name="group_manufacture_process" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}">
                         <label string='Manufacture Process'/>
                         <div class="o_row" name="manufacture_process">
