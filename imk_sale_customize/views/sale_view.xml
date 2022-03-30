@@ -6,12 +6,18 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//page[@name='optional_products']" position="replace"></xpath>
-
                 <xpath expr="//field[@name='payment_term_id']" position="after"> 
                     <field name="customer_po"/>
                     <field name="customer_shipment_date"/>
                 </xpath> 
+            </field>
+        </record>
+        <record id="optional_sale_view_form" model="ir.ui.view">
+            <field name="name">imk.sale.optional.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_management.sale_order_form_quote"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='optional_products']" position="replace"></xpath>
             </field>
         </record>
     </data>
