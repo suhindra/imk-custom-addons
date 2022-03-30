@@ -6,9 +6,7 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
-                    <field name="product_template_attribute_value_ids" widget='many2many_tags'/>
-                </xpath>
+                <xpath expr="//page[@name='optional_products']" position="replace"></xpath>
 
                 <xpath expr="//field[@name='payment_term_id']" position="after"> 
                     <field name="customer_po"/>
