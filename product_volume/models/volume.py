@@ -34,6 +34,8 @@ class ProductDimensionsVolume(models.Model):
     @api.onchange('length','breadth','height','kw1','kw2','kw3','kw4','kw5','flute') 
     def onchange_l_b_h_kw(self):
         if not self.flute:
+            length_sheet = 0;
+            breadth_sheet = 0;
             if self.flute == 'bf':
                 length_sheet = 2 * (int(self.length if self.length else 0) + int(self.breadth if self.breadth else 0)) + 12 + 10 + 35 
                 breadth_sheet = int(self.breadth if self.breadth else 0) + int(self.height if self.height else 0) + 9
