@@ -20,6 +20,7 @@ class ProductDimensionsVolume(models.Model):
     cetak = fields.Boolean(string='Cetak');
     glue = fields.Boolean(string='Glue');
     stitching = fields.Boolean(string='Stitching');
+    ikat = fields.Boolean(string='Ikat');
     length = fields.Char(string="Length", required=True, default="0")
     breadth = fields.Char(string="Breadth", required=True, default="0")
     height = fields.Char(string="Height", required=True, default="0")

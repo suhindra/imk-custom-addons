@@ -87,6 +87,10 @@
                         <div class="o_row" name="stitching">
                             <field name="stitching"/>
                         </div>
+                        <label for="ikat"/>
+                        <div class="o_row" name="ikat">
+                            <field name="ikat"/>
+                        </div>
                     </group>
                 </xpath>
             </field>
