@@ -2,6 +2,7 @@
 
 from odoo import api, models, fields
 import logging
+import re
 
 _logger = logging.getLogger(__name__)
 
@@ -22,29 +23,29 @@ class ProductDimensionsVolume(models.Model):
     length = fields.Char(string="Length")
     breadth = fields.Char(string="Breadth")
     height = fields.Char(string="Height")
-    length_sheet = fields.Char(string="Length Sheet")
-    breadth_sheet = fields.Char(string="Breadth Sheet")
     wide = fields.Char(string="Sheet Size")
-    inner_size = fields.Char(string="Inner Size")
     kw1 = fields.Char(string="KW 1")
     kw2 = fields.Char(string="KW 2")
     kw3 = fields.Char(string="KW 3")
     kw4 = fields.Char(string="KW 4")
     kw5 = fields.Char(string="KW 5")
 
-    @api.onchange('length','breadth','height') 
-    def onchange_l_b_h(self):
-        self.volume = float(self.length if self.length else 0) * float(self.breadth if self.breadth else 0) * float(self.height if self.height else 0)
 
-    @api.onchange('length','breadth')
-    def onchange_l_b(self):
-        self.wide = float(self.length if self.length else 0) * float(self.breadth if self.breadth else 0)
-
-    @api.onchange('length','breadth','height','kw1','kw2','kw3','kw4','kw5') 
+    @api.onchange('length','breadth','height','kw1','kw2','kw3','kw4','kw5','flute') 
     def onchange_l_b_h_kw(self):
-        self._origin
-        _logger.info(self._origin.attribute_line_ids)
-        for val in self.attribute_line_ids:
-            _logger.info('FYI: This is happening')
-            _logger.info(val)
-            self.inner_size  = '1'
+        if self.flute == 'bf':
+            length_sheet = 2 * (int(self.length if self.length else 0) + int(self.breadth if self.breadth else 0)) + 12 + 10 + 35 
+            breadth_sheet = int(self.breadth) + int(self.height) + 9
+            
+        if self.flute == 'cf':
+            length_sheet = 2 * (int(self.length if self.length else 0) + int(self.breadth if self.breadth else 0)) + 15 + 10 + 35 
+            breadth_sheet = int(self.breadth) + int(self.height) + 13
+            
+        if self.flute == 'bcf':
+            length_sheet = 2 * (int(self.length if self.length else 0) + int(self.breadth if self.breadth else 0)) + 28 + 10 + 40 
+            breadth_sheet = int(self.breadth) + int(self.height) + 22
+            
+        sheet_size = length_sheet * breadth_sheet / 1000000
+        self.wide = sheet_size
+        weight = sheet_size * (int(re.sub('\D', '',self.kw1)) + (int(re.sub('\D', '',self.kw2)) * 1.4) + int(re.sub('\D', '',self.kw3)) + (int(re.sub('\D', '',self.kw4)) * 1.5) + int(re.sub('\D', '',self.kw5))) / 1000
+        self.weight = weight        

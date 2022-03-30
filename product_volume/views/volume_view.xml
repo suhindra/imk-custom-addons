@@ -49,25 +49,15 @@
                         <div class="o_row" name="kw5">
                             <field name="kw5"/>
                         </div>
-                        <label for="weight"/>
-                        <div class="o_row" name="weight">
-                            <field name="weight"/>
-                            <span>kg</span>
-                        </div>
                         <label for="wide"/>
                         <div class="o_row" name="wide">
                             <field name="wide"/>
                             <span>mm</span>
                         </div>
-                        <label for="inner_size"/>
-                        <div class="o_row" name="inner_size">
-                            <field name="inner_size"/>
-                            <span>mm</span>
-                        </div>
-                        <label for="volume"/>
-                        <div class="o_row" name="volume">
-                            <field name="volume" />
-                            <span>mm³</span>
+                        <label for="weight"/>
+                        <div class="o_row" name="weight">
+                            <field name="weight"/>
+                            <span>kg</span>
                         </div>
                     </group>
                 </xpath>
