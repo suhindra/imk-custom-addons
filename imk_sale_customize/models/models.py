@@ -7,13 +7,11 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     customer_po = fields.Char(required=True, string='Customer PO')
-    customer_shipment_date = fields.Date(required=True, default=fields.Date.context_today, string='Customer\' Shipment Date')
+    customer_shipment_date = fields.Date(required=True, default=fields.Date.context_today, string='Customer Shipment Date')
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
-
-    product_template_attribute_value_ids = fields.Many2many('product.template.attribute.value', relation='product_variant_combination', string="Attribute Values", ondelete='restrict')
 
     @api.onchange('product_id')
     def product_id_change(self):
