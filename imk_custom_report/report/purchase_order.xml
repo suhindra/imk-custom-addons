@@ -7,7 +7,7 @@
             model="purchase.order"
             report_type="qweb-pdf"
             file="purchase_order.purchase_order_report"
-            name="imk_custom_report.purchase_order_report"
+            name="imk_custom_report.report_purchaseorder"
         />
 
         <template id="report_purchaseorder_document">
