@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            id="report_stock_picking_menu"
+            string="Performa"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            file="stock.stock_picking"
+            name="imk_custom_report.stock_picking_report"
+        />
+
+
+        <template id="report_stock_picking_document">
+            <div class="page print">
+                <style type="text/css">
+                    @media print {
+                        html, body {
+                        background: #FFF; 
+                        }
+
+                        .main-table {
+                            position: absolute;
+                            width: 20cm;
+                            height: 10.5;
+                            border: 3px solid #000;
+                        }
+
+                        }
+
+                        .main-table {
+                            line-height: 18px;
+                            font-size: 14px;
+                            margin-top: 0.9cm;
+                            margin-left: 1.75cm;
+                            position: absolute;
+                            width: 22cm;
+                            min-height: 9;
+                        }
+                        .footer-table{
+                            line-height: 20px;
+                            font-size: 14px;
+                            margin-top: 12.60cm;
+                            margin-left: 1cm;
+                            position: absolute;
+                            width: 23cm;
+                        }
+                        .blank{
+                            color: #ffffff;
+                        }
+                        .currency{
+                            text-align: right;
+                        }
+
+                        @page {
+                        size: 9.5in 5.5in;
+                    }
+                </style>
+                <t t-foreach="docs" t-as="o">
+                <table class="main-table">
+                    <tr>
+                        <td></td>
+                        <td colspan="4">
+                        </td>
+                        <td></td>
+                        <td style="font-size: 18px;" >
+                            <t t-esc="o.name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="4">
+                        </td>
+                        <td></td>
+                        <td >
+                            <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="4">
+                            <t t-esc="o.partner_id.name" />
+                        </td>
+                        <td></td>
+                        <td width="28%" >
+                            <t t-esc="o.top_sales" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="4">
+                            <t t-esc="o.partner_id.street" />
+                        </td>
+                        <td></td>
+                        <td width="28%" >
+                            <t t-esc="time.strftime('%d %B %Y',time.strptime(o.due_date,'%Y-%m-%d %H:%M:%S'))"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="4">
+                            <t t-esc="o.partner_id.ref" />
+                        </td>
+                        <td></td>
+                        <td >
+                            <t t-esc="o.origin" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="4">
+                            
+                        </td>
+                        <td></td>
+                        <td >
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="4">
+                            <t t-esc="o.partner_id.mobile" />
+                        </td>
+                        <td></td>
+                        <td >
+                            1
+                        </td>
+                    </tr>
+                    <tr class="blank">
+                        <td width="6.35%">
+                            Blank
+                        </td>
+                    </tr>
+                    <tr class="blank">
+                        <td width="6.35%">
+                            Blank
+                        </td>
+                    </tr>
+                    <t t-set="i" t-value="1"/>
+                    <t t-set="total" t-value="0"/>
+                    <t t-foreach="o.pack_operation_product_ids" t-as="ol">
+                        <tr>
+                            <td width="6.35%">
+                                <t t-esc="i"/> 
+                            </td>
+                            <td width="32.5%">
+                                <t t-esc="ol.product_id.name" />
+                            </td>
+                            <td width="7.5%">
+                                <t t-esc="ol.product_uom_id.name" />
+                            </td>
+                            <td width="9.5%">
+                                <t t-esc="int(ol.qty_done)" /> 
+                            </td>
+                            <td class="currency"  width="17%">
+                                <t t-esc="'{0:,.2f}'.format(int(ol.sale_price_unit))"/> 
+                            </td>
+                            <td class="currency" width="8.5%">
+                                <t t-esc="'%.2f'%(ol.discount)" />
+                            </td>
+                            <td class="currency" width="19%">
+                                <t t-esc="'{0:,.2f}'.format(int(ol.sale_price_unit) * int(ol.qty_done))"/>
+                            </td>
+                        </tr>
+                    <t t-set="total" t-value="total+(int(ol.sale_price_unit) * int(ol.qty_done))"/>
+                    <t t-set="i" t-value="i+1"/>
+                    </t>
+                </table>
+                <table class="footer-table">
+                    <tr>
+                        <td class="currency" rowspan="1" width="55.85%" colspan="4">
+                            <t t-esc="o.salesperson" />
+                        </td>
+                        <td width="35%"> 
+                        </td>
+                        <td class="currency" width="8.5%">
+                            <t t-esc="'{0:,.2f}'.format(int(total))"/>
+                        </td>
+                        <td width="19%">                                
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" width="55.85%" colspan="4">
+                            <t t-esc="o.amount_to_text" />
+                        </td>
+                        <td width="35%"> 
+                        </td>
+                        <td class="currency"  width="8.5%">
+                            <t t-esc="'{0:,.2f}'.format(int(o.amount_discount))"/>
+                        </td>
+                        <td width="19%">                                
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="17%">
+                            
+                        </td>
+                        <td class="currency" width="8.5%">
+                            <t t-esc="'{0:,.2f}'.format(int(total))"/>
+                        </td>
+                        <td width="19%">                                
+                        </td>
+                    </tr>
+                </table>
+                </t>
+            </div>
+        </template>
+
+        <template id="stock_picking_report">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="imk_custom_report.report_stock_picking_document"
+                       t-lang="doc.create_uid.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

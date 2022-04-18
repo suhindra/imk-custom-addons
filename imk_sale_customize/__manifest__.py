@@ -19,6 +19,7 @@
     ],
     'data': [
         'views/sale_view.xml',
+        'views/purchase_view.xml',
     ],
     'demo': [],
     'test': [],

@@ -9,7 +9,13 @@
                 <xpath expr="//field[@name='payment_term_id']" position="after"> 
                     <field name="customer_po"/>
                     <field name="customer_shipment_date"/>
-                </xpath> 
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                    <field name="join"/>
+                    <field name="flute"/>
+                    <field name="wide"/>
+                    <field name="weight"/>
+                </xpath>
             </field>
         </record>
     </data>

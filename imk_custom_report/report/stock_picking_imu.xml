@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            id="report_stock_picking_imu_menu"
+            string="Delivery Order ASR"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            file="stock.stock_picking_imu"
+            name="imk_custom_report.stock_picking_imu_report"
+        />
+
+
+        <template id="report_stock_picking_imu_document">
+            <t t-call="report.html_container">
+                <div class="page" style="font-size: 12px !important; line-height: 1 !important;">
+                    <br/>
+                    <style>
+                        dl {
+                            width: 100%;
+                            overflow: hidden;
+                            padding: 0;
+                            margin: 0
+                        }
+                        dt {
+                            float: left;
+                            width: 50%;
+                            padding: 0;
+                            margin: 0
+                        }
+                        dd {
+                            float: left;
+                            width: 50%;
+                            padding: 0;
+                            margin: 0;
+                        }
+                        hr {
+                            padding: 5px;
+                            margin: 0;
+                        }
+                    </style>
+                    <t t-foreach="docs" t-as="o">
+                        <t t-set="i" t-value="0"/>
+                        <t t-set="page" t-value="1"/>
+                        <t t-set="iteration" t-value="3"/>
+                        <t t-foreach="o.pack_operation_ids" t-as="pack_operation">
+                            <t t-set="i" t-value="i+1"/>                            
+                            <t t-if="(i%iteration) == 1">
+                                <t t-set="mod" t-value="i%iteration"/>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h3>PT. Aliet Sakatha Rahayu</h3>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h2 class="text-center">Delivery Order</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <div t-if="o.picking_type_id.code=='outgoing' and o.partner_id">
+                                            <span>Customer Address:</span>
+                                        </div>
+                                        <div t-if="o.partner_id" name="partner_header">
+                                            <span t-field="o.partner_id.name"/><br/>
+                                            <span t-field="o.partner_id.street"/>
+                                        </div>
+                                        <hr/>
+                                        <div>
+                                            <span><div t-field="o.picking_type_id"/></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <dl>
+                                          <dt>SO</dt>
+                                          <dd style="font-size: 14px !important;"><span t-field="o.origin"/></dd>
+                                          <dt>SS</dt>
+                                          <dd style="font-size: 14px !important;"><span t-field="o.name"/></dd>
+                                          <dt>Date</dt>
+                                          <dd><t t-esc="time.strftime('%d %B %Y',time.strptime(o.date,'%Y-%m-%d %H:%M:%S'))"/></dd>
+                                          <dt>No. Printed</dt>
+                                          <dd>1</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <table class="table table-condensed" t-if="o.pack_operation_ids">
+                                          <thead>
+                                            <tr>
+                                                <th><strong>Product</strong></th>
+                                                <th class="text-right"><strong>Quantity</strong></th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>                                                
+                                                <t t-if="len(o.pack_operation_ids) &gt; iteration*page-3">
+                                                    <td style="font-size: 14px !important;">
+                                                        <span t-field="o.pack_operation_ids[iteration*page-3].product_id"/>
+                                                        <t t-if="not o.pack_operation_ids[iteration*page-3].product_id and o.pack_operation_ids[iteration].package_id">
+                                                            <span t-field="o.pack_operation_ids[iteration*page-3].package_id"/>
+
+                                                        </t>
+                                                    </td>
+                                                    <td class="text-right"  style="font-size: 14px !important;">
+                                                        <span t-field="o.pack_operation_ids[iteration*page-3].product_qty"/>
+                                                        <span t-field="o.pack_operation_ids[iteration*page-3].product_uom_id" groups="product.group_uom"/>
+                                                    </td>
+                                                </t>
+                                            </tr>
+                                            <tr>                                                
+                                                <t t-if="len(o.pack_operation_ids) &gt; iteration*page-2">
+                                                    <td style="font-size: 14px !important;">
+                                                        <span t-field="o.pack_operation_ids[iteration*page-2].product_id"/>
+                                                        <t t-if="not o.pack_operation_ids[iteration*page-2].product_id and o.pack_operation_ids[iteration].package_id">
+                                                            <span t-field="o.pack_operation_ids[iteration*page-2].package_id"/>
+
+                                                        </t>
+                                                    </td>
+                                                    <td class="text-right"  style="font-size: 14px !important;">
+                                                        <span t-field="o.pack_operation_ids[iteration*page-2].product_qty"/>
+                                                        <span t-field="o.pack_operation_ids[iteration*page-2].product_uom_id" groups="product.group_uom"/>
+                                                    </td>
+                                                </t>
+                                            </tr>
+                                            <tr>                                                
+                                                <t t-if="len(o.pack_operation_ids) &gt; iteration*page-1">
+                                                    <td style="font-size: 14px !important;">
+                                                        <span t-field="o.pack_operation_ids[iteration*page-1].product_id"/>
+                                                        <t t-if="not o.pack_operation_ids[iteration*page-1].product_id and o.pack_operation_ids[iteration].package_id">
+                                                            <span t-field="o.pack_operation_ids[iteration*page-1].package_id"/>
+
+                                                        </t>
+                                                    </td>
+                                                    <td class="text-right"  style="font-size: 14px !important;">
+                                                        <span t-field="o.pack_operation_ids[iteration*page-1].product_qty"/>
+                                                        <span t-field="o.pack_operation_ids[iteration*page-1].product_uom_id" groups="product.group_uom"/>
+                                                    </td>
+                                                </t>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-xs-5" style="font-size: 12px !important;">
+                                        <p><strong>Catatan:</strong></p>
+                                        <p>Penerima membubuhkan tanda tangan dan stempel setelah:</p>
+                                        <ol>
+                                            <li>Mengetahui dan memeriksa barang yang diterima sesuai dengan yang dicantumkan di Surat Jalan, Baik Jenis maupun Jumlahnya</li>
+                                            <li>Barang yang diterima dalam keadaan baik dan utuh</li>
+                                            <li>Mengetahui dan menyetujui bahwa barang yang belum lunas, masih merupakan milik pemberi barang, sehingga tidak keberatan apabila sewaktu-waktu ditarik kembali</li>                                    
+                                        </ol>
+                                        <span t-field="o.salesperson"/> - Printed on <t t-usertime="%d %B %Y" /> <br/>
+                                        Page <t t-esc="page" /> / <t t-esc="-(-len(o.pack_operation_ids) // iteration)"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <table class="table">
+                                            <tr>
+                                                <td>Warehouse</td>
+                                                <td>Driver</td>
+                                                <td>Customer</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-top:0.5cm">
+                                                    ....................
+                                                </td>
+                                                <td style="padding-top:0.5cm">
+                                                    ....................
+                                                </td>
+                                                <td style="padding-top:0.5cm">
+                                                    <span t-field="o.partner_id.name"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <p t-if="not o.pack_operation_ids">
+                                    You do not have any products reserved for this picking.  Please click the 'Reserve' button
+                                    to check if products are available.
+                                </p>
+                                <t t-set="page" t-value="page+1"/>
+                                <p style="page-break-before:always;"> </p>
+                            </t>
+                        </t>
+                    </t>
+                </div>
+            </t>
+        </template>
+
+        <template id="stock_picking_imu_report">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="imk_custom_report.report_stock_picking_imu_document"
+                       t-lang="doc.create_uid.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>
