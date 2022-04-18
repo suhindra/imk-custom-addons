@@ -76,6 +76,18 @@
                                     <span t-field="line.product_id.join"/>
                                 </td>
                                 <td>
+                                    <span t-field="line.product_id.categ_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.product_id.length"/> x <span t-field="line.product_id.breadth"/> x <span t-field="line.product_id.height"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.product_id.kw1"/> / <span t-field="line.product_id.kw2"/> / <span t-field="line.product_id.kw3"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.product_id.flute"/>
+                                </td>
+                                <td>
                                     <span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))"/>
                                 </td>
                                 <td class="text-center">
