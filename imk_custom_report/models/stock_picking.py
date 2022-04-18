@@ -7,4 +7,4 @@ _logger = logging.getLogger(__name__)
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
-    customer_po = fields.Char(required=True, string='Customer PO')
+    customer_po = fields.Char(string='Customer PO')
