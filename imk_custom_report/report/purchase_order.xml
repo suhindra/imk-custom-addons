@@ -6,7 +6,7 @@
             string="Purchase Order IMK"
             model="purchase.order"
             report_type="qweb-pdf"
-            file="purchase_order.purchase_order_report"
+            file="purchase.purchase_order"
             name="imk_custom_report.report_purchaseorder_custom"
         />
 
