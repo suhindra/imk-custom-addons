@@ -15,8 +15,6 @@ class ProductCustomerInfo(models.Model):
         help="Customer of this product",
     )
 
-    categ = fields.Char(related='name.categ_id.name')
-    productname = fields.Char(related='name.categ_id.name')
 
     @api.onchange('name') 
     def onchange_name(self):
