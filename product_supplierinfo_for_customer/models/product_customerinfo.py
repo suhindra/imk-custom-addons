@@ -15,10 +15,13 @@ class ProductCustomerInfo(models.Model):
         help="Customer of this product",
     )
 
+    categ = fields.Char(related='name.categ_id.name')
+    productname = fields.Char(related='name.categ_id.name')
+
     @api.onchange('name') 
     def onchange_name(self):
-        self.product_name = self.name.name
-        self.product_code = self.name.name
+        self.product_name = self.product_tmpl_id.name
+        self.product_code = self.name.ref
 
     @api.model
     def get_import_templates(self):
