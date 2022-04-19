@@ -17,8 +17,8 @@ class ProductCustomerInfo(models.Model):
 
     @api.onchange('name') 
     def onchange_name(self):
-        self.product_name = 'product_name'
-        self.product_code = 'product_code'
+        self.product_name = self.name.name
+        self.product_code = self.name.name
 
     @api.model
     def get_import_templates(self):
