@@ -19,7 +19,7 @@ class ProductCustomerInfo(models.Model):
     @api.onchange('name') 
     def onchange_name(self):
         self.product_name = str(self.product_tmpl_id.name) + str(self.product_tmpl_id.categ_id.name)
-        product_customer = (str(int(len(self.env['product.customerinfo'].search([('name','=', self.name)]))) + 1) ).zfill(3)
+        product_customer = (str(int(len(self.env['product.customerinfo'].search([('name','=', self.name.id)]))) + 1) ).zfill(3)
         self.product_code = str(self.product_tmpl_id.categ_id.name) + str("-") + str(self.name.ref) + str("-") + str(product_customer)
 
     @api.model
