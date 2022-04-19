@@ -19,7 +19,7 @@ class ProductCustomerInfo(models.Model):
     @api.onchange('name') 
     def onchange_name(self):
         self.product_name = self.product_tmpl_id.name
-        self.product_code = self.name.ref
+        self.product_code = str() + str("-") + str(self.name.ref) + str("-") + str() #B-0013-003
 
     @api.model
     def get_import_templates(self):
