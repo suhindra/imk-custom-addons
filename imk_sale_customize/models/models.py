@@ -38,7 +38,7 @@ class SaleOrderLine(models.Model):
     join = fields.Selection(string="Join", selection=JOINS,  related='product_id.join', store=True, readonly=True)
     flute = fields.Selection(string="Flute", selection=FLUTES,  related='product_id.flute', store=True, readonly=True)
     wide = fields.Char(string="Sheet Size", related='product_id.wide', store=True, readonly=True)
-    weight = fields.Float(string="Weight", related='product_id.weight', store=True, readonly=True)
+    weight = fields.Float(digits = (12,4), string="Weight", related='product_id.weight', store=True, readonly=True)
     
 
 class PurchaseOrder(models.Model):
@@ -56,6 +56,6 @@ class PurchaseOrderLine(models.Model):
     join = fields.Selection(string="Join", selection=JOINS,  related='product_id.join', store=True, readonly=True)
     flute = fields.Selection(string="Flute", selection=FLUTES,  related='product_id.flute', store=True, readonly=True)
     wide = fields.Char(string="Sheet Size", related='product_id.wide', store=True, readonly=True)
-    weight = fields.Float(string="Weight", related='product_id.weight', store=True, readonly=True)
+    weight = fields.Float(digits = (12,4), string="Weight", related='product_id.weight', store=True, readonly=True)
     
     

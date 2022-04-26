@@ -30,7 +30,10 @@ class ProductDimensionsVolume(models.Model):
     kw3 = fields.Char(string="KW 3", required=True, default="0")
     kw4 = fields.Char(string="KW 4", required=True, default="0")
     kw5 = fields.Char(string="KW 5", required=True, default="0")
+    weight = fields.Float(digits = (12,4))
 
+    length_sheet = fields.Char(string="Sheet Length", required=True, default="0")
+    breadth_sheet = fields.Char(string="Sheet Breadth", required=True, default="0")
 
     @api.onchange('length','breadth','height','kw1','kw2','kw3','kw4','kw5','flute') 
     def onchange_l_b_h_kw(self):
@@ -47,8 +50,11 @@ class ProductDimensionsVolume(models.Model):
         if self.flute == 'bcf':
             length_sheet = 2 * (int(self.length if self.length else 0) + int(self.breadth if self.breadth else 0)) + 28 + 10 + 40 
             breadth_sheet = int(self.breadth if self.breadth else 0) + int(self.height if self.height else 0) + 22
-            
+        
+        self.length_sheet = float("{:.4f}".format(length_sheet))
+        self.breadth_sheet = float("{:.4f}".format(breadth_sheet))
+
         sheet_size = length_sheet * breadth_sheet / 1000000
-        self.wide = float("{:.2f}".format(sheet_size))
+        self.wide = float("{:.4f}".format(sheet_size))
         weight = sheet_size * (int(re.sub('\D', '',self.kw1 if self.kw1 else 0)) + (int(re.sub('\D', '',self.kw2 if self.kw2 else 0)) * 1.4) + int(re.sub('\D', '',self.kw3 if self.kw3 else 0)) + (int(re.sub('\D', '',self.kw4 if self.kw4 else 0)) * 1.5) + int(re.sub('\D', '',self.kw5 if self.kw5 else 0))) / 1000
-        self.weight = float("{:.2f}".format(weight))
+        self.weight = float("{:.4f}".format(weight))
