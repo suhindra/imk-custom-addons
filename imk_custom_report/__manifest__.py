@@ -9,9 +9,13 @@
     'data': [
             'report/account_invoice.xml',
             'report/purchase_order.xml',
+            'report/sale_order.xml',
             'views/stock_picking.xml',
             'views/account_invoice.xml',
             'report/stock_picking.xml',
+            'report/delivery_slip.xml',
+            'report/surat_jalan.xml',
+            'report/mpr_order.xml',
             
     ],
     'installable': True,

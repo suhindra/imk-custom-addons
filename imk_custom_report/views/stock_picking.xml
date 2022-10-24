@@ -9,6 +9,11 @@
                 <xpath expr="//field[@name='origin']" position="after">
                     <field name="customer_po"/>
                 </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="print_sj" type="object" attrs="{'invisible': [('picking_type_code', '=', 'ingoing')]}" string="Cetak Surat Jalan"/>
+
+                    <button name="print_sttb" type="object" attrs="{'invisible': [('picking_type_code', '=', 'outgoing')]}" string="Cetak Surat Tanda Terima Barang"/>
+                </xpath>
             </field>
         </record>
     </data>

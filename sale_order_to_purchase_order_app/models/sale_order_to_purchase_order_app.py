@@ -7,6 +7,7 @@ class SaleOrder(models.Model):
 	_inherit = 'sale.order'
 
 	custom_purchase_count = fields.Integer('Purchase',compute='_compute_custom_purchase_count')	
+	custom_manufacture_count = fields.Integer('Manufacture',compute='_compute_custom_manufacture_count')	
 
 	def _compute_custom_purchase_count(self):
 		for so in self:
@@ -22,6 +23,25 @@ class SaleOrder(models.Model):
 			'name': _('Purchase Order'),
 			'view_mode': 'tree,form',
 			'res_model': 'purchase.order',
+			'domain': [('id', 'in', purchases.ids)],
+			'type': 'ir.actions.act_window',
+			}
+
+
+	def _compute_custom_manufacture_count(self):
+		for so in self:
+			po = self.env['mrp.production'].search_count([('origin','like', so.id)])
+			so.custom_manufacture_count = po
+
+	@api.multi
+	def action_view_custom_manufacture(self):
+		action = self.env.ref('mrp.mrp_production_tree_view').read()[0]
+		context = dict(self.env.context or {})
+		purchases = self.env['mrp.production'].search([('origin','like', self.id)])
+		return {
+			'name': _('Manufacure Order'),
+			'view_mode': 'tree,form',
+			'res_model': 'mrp.production',
 			'domain': [('id', 'in', purchases.ids)],
 			'type': 'ir.actions.act_window',
 			}

@@ -11,14 +11,19 @@
         />
         <template id="report_account_invoice_document">
             <t t-foreach="docs" t-as="o">
-                <t t-call="web.external_layout">
+                <t t-call="web.internal_layout">
                     <t t-set="o" t-value="o.with_context(lang=lang)" />
-                    <t t-set="address">
-                        <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
-                        <div t-if="o.partner_id.vat" class="mt16"><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="o.partner_id.vat"/></div>
-                    </t>
-                    <div style="font-size:12px" class="page">
+                    <span>
+                        PT INOVASI MITRA KEMAS<br/>
+                        Jalan Alhuda RT 02/02<br/>
+                        Cikarang Jati - Bekasi
+                    </span>
+                    <div style="font-size:12px;line-height: normal;" class="page">
                         <div id="informations" class="row mt32 mb32">
+                            <div class="col-auto mw-100 mb-2">
+                                <strong>Partner:</strong>
+                                <p class="m-0" t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                            </div>
                             <div class="col-auto mw-100 mb-2" t-if="o.name" name="description">
                                 <strong>Description:</strong>
                                 <p class="m-0" t-field="o.name"/>
@@ -179,7 +184,7 @@
                         <table class="table  table-bordered">
                             <tr>
                                 <td>Di Transfer ke:</td>
-                                <td>Bekasi, <span t-field="o.date_invoice"/></td>
+                                <td class="text-center">Bekasi, <span t-field="o.date_invoice"/></td>
 
                             </tr>
                             <tr>
@@ -193,7 +198,7 @@
                             <tr>
                                 <td>A/N       : INOVASI MITRA KEMAS, PT.
                                 </td>
-                                <td>  ....................
+                                <td class="text-center">  Yaya Suryadi
                                 </td>
                             </tr>
                         </table>

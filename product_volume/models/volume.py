@@ -56,5 +56,5 @@ class ProductDimensionsVolume(models.Model):
 
         sheet_size = length_sheet * breadth_sheet / 1000000
         self.wide = float("{:.4f}".format(sheet_size))
-        weight = sheet_size * (int(re.sub('\D', '',self.kw1 if self.kw1 else 0)) + (int(re.sub('\D', '',self.kw2 if self.kw2 else 0)) * 1.4) + int(re.sub('\D', '',self.kw3 if self.kw3 else 0)) + (int(re.sub('\D', '',self.kw4 if self.kw4 else 0)) * 1.5) + int(re.sub('\D', '',self.kw5 if self.kw5 else 0))) / 1000
+        weight = sheet_size * (int(re.sub('\D', '',self.kw1 if self.kw1 else '0')) + (int(re.sub('\D', '',self.kw2 if self.kw2 else '0')) * 1.4) + int(re.sub('\D', '',self.kw3 if self.kw3 else '0')) + (int(re.sub('\D', '',self.kw4 if self.kw4 else '0')) * 1.5) + int(re.sub('\D', '',self.kw5 if self.kw5 else '0'))) / 1000
         self.weight = float("{:.4f}".format(weight))
